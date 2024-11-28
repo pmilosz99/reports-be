@@ -25,6 +25,10 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
+  getUser(email: string): Promise<User> {
+    return this.userRepository.findOneBy({ email });
+  }
+
   getAllUsers(): Promise<User[]> {
     return this.userRepository.find();
   }
