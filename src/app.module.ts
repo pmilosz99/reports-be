@@ -12,6 +12,7 @@ import typeorm from './config/typeorm';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [typeorm],
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],

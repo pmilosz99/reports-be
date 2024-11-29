@@ -1,17 +1,19 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
+import { Public } from 'src/auth/decorators/public.decorator';
 
-@Controller('users')
+@Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
+  @Get('list')
   getUsers() {
     return this.usersService.getAllUsers();
   }
 
-  @Post()
+  @Public()
+  @Post('create')
   async create(
     @Body()
     body: {

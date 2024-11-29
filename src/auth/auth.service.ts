@@ -12,8 +12,11 @@ export class AuthService {
 
   async signIn(email: string, pass: string): Promise<any> {
     const user = await this.usersService.getUser(email);
-    if (user && (await bcrypt.compare(pass, user.password))) {
-      throw new UnauthorizedException();
+
+    const isPassCorrect = await bcrypt.compare(pass, user.password);
+
+    if (!user || !isPassCorrect) {
+      throw new UnauthorizedException('Invalid credentials');
     }
     const payload = { sub: user.id, username: user.email };
 
