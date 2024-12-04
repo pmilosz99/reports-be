@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ReportStatus, STATUS_VALUES } from './types/report-status';
 import { ReportType } from './types/report-type';
 
-@Entity('reports')
+@Entity()
 export class Report {
   @PrimaryGeneratedColumn()
   id: number;

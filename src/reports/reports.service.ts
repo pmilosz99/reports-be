@@ -4,7 +4,6 @@ import { Report } from './report.entity';
 import { CreateReportDto } from './dtos/create-report.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReportStatus, STATUS_VALUES } from './types/report-status';
-import { Public } from 'src/auth/decorators/public.decorator';
 
 @Injectable()
 export class ReportsService {
@@ -13,13 +12,11 @@ export class ReportsService {
     private readonly reportRepository: Repository<Report>,
   ) {}
 
-  @Public()
   create(createReportDto: CreateReportDto) {
     const report = this.reportRepository.create(createReportDto);
     return this.reportRepository.save(report);
   }
 
-  @Public()
   findAll() {
     return this.reportRepository.find();
   }
