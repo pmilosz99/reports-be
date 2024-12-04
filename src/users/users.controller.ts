@@ -3,17 +3,17 @@ import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { Public } from 'src/auth/decorators/public.decorator';
 
-@Controller('user')
+@Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('list')
+  @Get()
   getUsers() {
     return this.usersService.getAllUsers();
   }
 
   @Public()
-  @Post('create')
+  @Post()
   async create(
     @Body()
     body: {
